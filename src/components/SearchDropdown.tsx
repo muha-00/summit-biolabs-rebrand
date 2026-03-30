@@ -17,15 +17,14 @@ const SearchDropdown = ({ className, onClose }: { className?: string; onClose?: 
     e.preventDefault();
     if (query.trim()) {
       navigate(`/shop?search=${encodeURIComponent(query.trim())}`);
-      setQuery("");
       setFocused(false);
       onClose?.();
     }
   };
 
   const handleSelect = (name: string) => {
+    setQuery(name);
     navigate(`/shop?search=${encodeURIComponent(name)}`);
-    setQuery("");
     setFocused(false);
     onClose?.();
   };
