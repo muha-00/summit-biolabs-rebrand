@@ -8,13 +8,12 @@ const ProductCard = ({ product }: { product: Product }) => {
   const { addToCart } = useCart();
 
   return (
-    <div className="bg-card border border-border group hover:shadow-lg transition-all duration-300 relative overflow-hidden">
-      {/* Frost gradient edges */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-accent/30 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-
+    <div className="bg-card group hover:shadow-lg transition-all duration-300 relative overflow-hidden rounded-sm">
       <div className="p-4 flex flex-col items-center">
         <Link to={`/product/${product.id}`} className="w-full flex flex-col items-center">
-          <div className="w-full aspect-square flex items-center justify-center bg-frost mb-3 p-4">
+          <div className="w-full aspect-square flex items-center justify-center bg-accent/20 mb-3 p-4 relative">
+            {/* Subtle ground shadow */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3/5 h-3 bg-black/10 rounded-full blur-md" />
             <img
               src={vialImage}
               alt={product.name}
