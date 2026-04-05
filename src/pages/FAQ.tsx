@@ -43,31 +43,29 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a, open, onToggle, index }: { q: string; a: string; open: boolean; onToggle: () => void; index: number }) {
+function FAQItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   return (
-    <div
-      className="bg-card rounded-2xl shadow-[0_4px_24px_rgba(0,40,100,0.08)] border border-border/50 overflow-hidden transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,40,100,0.12)]"
-    >
+    <div className="bg-card rounded-2xl shadow-[0_4px_24px_rgba(0,40,100,0.08)] border border-border/50 overflow-hidden transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,40,100,0.12)]">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 px-7 py-6 text-left group"
+        className="w-full flex items-center justify-between gap-4 px-8 py-7 text-left group"
         aria-expanded={open}
       >
-        <span className="text-sm md:text-base font-heading font-bold text-foreground tracking-wide group-hover:text-secondary transition-colors duration-200">
+        <span className="text-base md:text-lg font-heading font-bold text-foreground tracking-wide group-hover:text-secondary transition-colors duration-200">
           {q}
         </span>
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${open ? 'bg-secondary text-secondary-foreground rotate-180' : 'bg-accent text-muted-foreground'}`}>
+        <div className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${open ? 'bg-secondary text-secondary-foreground rotate-180' : 'bg-accent text-muted-foreground'}`}>
           <ChevronDown className="w-4 h-4" />
         </div>
       </button>
 
       <div
         className="overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ maxHeight: open ? "500px" : "0px", opacity: open ? 1 : 0 }}
+        style={{ maxHeight: open ? "600px" : "0px", opacity: open ? 1 : 0 }}
       >
-        <div className="px-7 pb-6 pt-0">
-          <div className="border-t border-border/40 pt-4">
-            <p className="font-body text-sm text-muted-foreground leading-relaxed">
+        <div className="px-8 pb-7 pt-0">
+          <div className="border-t border-border/40 pt-5">
+            <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed">
               {a}
             </p>
           </div>
@@ -105,7 +103,7 @@ const FAQ = () => {
         />
         <div className="absolute inset-0 bg-primary/40" />
         <div className="absolute inset-0 flex items-center justify-center flex-col gap-3">
-          <p className="text-xs font-heading tracking-[0.35em] uppercase text-cyan-300/90">
+          <p className="text-xs font-heading tracking-[0.35em] uppercase text-secondary">
             Support
           </p>
           <h1 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-wider text-primary-foreground drop-shadow-lg">
@@ -118,9 +116,9 @@ const FAQ = () => {
       </section>
 
       {/* FAQ Accordion */}
-      <section className="py-14 md:py-20">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="space-y-4">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="space-y-5">
             {faqs.map((item, i) => (
               <FAQItem
                 key={i}
@@ -128,13 +126,12 @@ const FAQ = () => {
                 a={item.a}
                 open={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-                index={i}
               />
             ))}
           </div>
 
           {/* Still have questions CTA */}
-          <div className="mt-14 text-center">
+          <div className="mt-16 text-center">
             <p className="font-body text-sm text-muted-foreground mb-5">
               Still have questions? Our team is happy to help.
             </p>
@@ -148,15 +145,19 @@ const FAQ = () => {
         </div>
       </section>
 
-      {/* Research disclaimer */}
-      <section className="border-t border-border py-8">
+      {/* Research disclaimer (moved from homepage) */}
+      <section className="bg-background border-t border-border py-10 md:py-14">
         <div className="container mx-auto px-4 max-w-3xl text-center">
-          <p className="text-[10px] font-heading font-bold tracking-[0.22em] uppercase text-muted-foreground/70 mb-2">
+          <p className="text-[10px] font-heading font-bold tracking-[0.22em] uppercase text-muted-foreground/70 mb-3">
             Research Disclaimer
           </p>
-          <p className="text-xs font-body text-muted-foreground/55 leading-relaxed">
+          <p className="text-xs font-heading font-semibold tracking-widest uppercase text-muted-foreground/80 mb-3">
+            Research Use Only. Not for Human Consumption.
+          </p>
+          <p className="text-xs font-body text-muted-foreground/60 leading-relaxed">
             All products sold by Summit BioLabs are intended strictly for laboratory research purposes only.
-            Not for human consumption, medical use, or diagnostic purposes.
+            These products are not intended for human consumption, medical use, or diagnostic purposes.
+            By purchasing from this website you agree that the products will be used for laboratory research purposes only.
           </p>
         </div>
       </section>
