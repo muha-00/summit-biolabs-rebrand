@@ -1,6 +1,18 @@
 import Layout from "@/components/Layout";
 import { FuturisticHero } from "@/components/three/FuturisticHero";
 import { Button3D } from "@/components/ui/Button3D";
+import { FlaskConical, ShieldCheck, Truck } from "lucide-react";
+
+const trustBadges = [
+  { icon: ShieldCheck, label: "3rd Party Tested", desc: "Janoshik Verified" },
+  { icon: FlaskConical, label: "99%+ Purity", desc: "Every Batch" },
+  { icon: Truck, label: "Free Ship $200+", desc: "Domestic Orders" },
+];
+
+const metrics = [
+  { value: "30+", label: "Research Compounds" },
+  { value: "99%+", label: "Average Purity" },
+];
 
 const Index = () => {
   return (
@@ -18,24 +30,41 @@ const Index = () => {
             Industry-leading purity backed by third-party lab verification.
             Every batch tested. Every result published.
           </p>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-12">
+            {trustBadges.map((badge) => (
+              <div key={badge.label} className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center shadow-sm">
+                  <badge.icon className="w-5 h-5 text-secondary" />
+                </div>
+                <div className="text-left">
+                  <p className="font-heading font-bold text-sm text-foreground">{badge.label}</p>
+                  <p className="font-body text-xs text-muted-foreground">{badge.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <Button3D label="Browse Products" to="/shop" />
         </div>
       </section>
 
-      {/* ── Research Disclaimer ──────────────────────────────────────────── */}
-      <section className="bg-background border-t border-border py-10 md:py-14">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <p className="text-[10px] font-heading font-bold tracking-[0.22em] uppercase text-muted-foreground/70 mb-3">
-            Research Disclaimer
-          </p>
-          <p className="text-xs font-heading font-semibold tracking-widest uppercase text-muted-foreground/80 mb-3">
-            Research Use Only. Not for Human Consumption.
-          </p>
-          <p className="text-xs font-body text-muted-foreground/60 leading-relaxed">
-            All products sold by Summit BioLabs are intended strictly for laboratory research purposes only.
-            These products are not intended for human consumption, medical use, or diagnostic purposes.
-            By purchasing from this website you agree that the products will be used for laboratory research purposes only.
-          </p>
+      {/* ── Metrics Bar ──────────────────────────────────────────────────── */}
+      <section className="bg-background border-t border-border py-14 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-16 md:gap-24">
+            {metrics.map((m) => (
+              <div key={m.label} className="text-center">
+                <p className="text-4xl md:text-5xl font-heading font-black text-secondary mb-2">
+                  {m.value}
+                </p>
+                <p className="text-xs font-heading font-semibold tracking-[0.2em] uppercase text-muted-foreground">
+                  {m.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </Layout>
