@@ -84,19 +84,19 @@ const Shop = () => {
                     onClick={() => {
                       setActiveCategory(cat.name);
                       setActiveSubcategory(null);
-                      if (cat.subcategories) toggleExpand(cat.name);
+                      if ((cat as any).subcategories) toggleExpand(cat.name);
                     }}
                   >
                     {cat.name}
-                    {cat.subcategories && (
+                    {(cat as any).subcategories && (
                       expandedCategories.includes(cat.name)
                         ? <ChevronUp className="w-3.5 h-3.5" />
                         : <ChevronDown className="w-3.5 h-3.5" />
                     )}
                   </button>
-                  {cat.subcategories && expandedCategories.includes(cat.name) && (
+                  {(cat as any).subcategories && expandedCategories.includes(cat.name) && (
                     <div className="ml-4 border-l border-border">
-                      {cat.subcategories.map((sub) => (
+                      {(cat as any).subcategories.map((sub: string) => (
                         <button
                           key={sub}
                           onClick={() => { setActiveCategory(cat.name); setActiveSubcategory(sub); }}

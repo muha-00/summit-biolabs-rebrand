@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
+import heroImage from "@/assets/hero-mountain.jpg";
 
 const faqs = [
   {
@@ -42,31 +43,35 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
+function FAQItem({ q, a, open, onToggle, index }: { q: string; a: string; open: boolean; onToggle: () => void; index: number }) {
   return (
-    <div className="border-b border-border last:border-b-0">
+    <div
+      className="bg-card rounded-2xl shadow-[0_4px_24px_rgba(0,40,100,0.08)] border border-border/50 overflow-hidden transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(0,40,100,0.12)]"
+    >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left group"
+        className="w-full flex items-center justify-between gap-4 px-7 py-6 text-left group"
         aria-expanded={open}
       >
-        <span className="text-sm md:text-base font-heading font-semibold text-primary tracking-wide group-hover:text-secondary transition-colors duration-200">
+        <span className="text-sm md:text-base font-heading font-bold text-foreground tracking-wide group-hover:text-secondary transition-colors duration-200">
           {q}
         </span>
-        <ChevronDown
-          className="w-4 h-4 flex-shrink-0 text-secondary transition-transform duration-300"
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
-        />
+        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${open ? 'bg-secondary text-secondary-foreground rotate-180' : 'bg-accent text-muted-foreground'}`}>
+          <ChevronDown className="w-4 h-4" />
+        </div>
       </button>
 
-      {/* Animated expand */}
       <div
-        className="overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ maxHeight: open ? "400px" : "0px", opacity: open ? 1 : 0 }}
+        className="overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ maxHeight: open ? "500px" : "0px", opacity: open ? 1 : 0 }}
       >
-        <p className="font-body text-sm text-muted-foreground leading-relaxed pb-5 pr-8">
-          {a}
-        </p>
+        <div className="px-7 pb-6 pt-0">
+          <div className="border-t border-border/40 pt-4">
+            <p className="font-body text-sm text-muted-foreground leading-relaxed">
+              {a}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -77,7 +82,7 @@ const FAQ = () => {
 
   return (
     <Layout>
-      {/* ── Page header ─────────────────────────────────────────────────── */}
+      {/* Breadcrumb */}
       <div className="bg-frost border-b border-border">
         <div className="container mx-auto px-4 py-3">
           <p className="text-xs font-heading tracking-wider text-muted-foreground">
@@ -88,29 +93,34 @@ const FAQ = () => {
         </div>
       </div>
 
-      {/* ── Hero strip ──────────────────────────────────────────────────── */}
-      <section className="bg-gradient-navy py-14 md:py-20 relative overflow-hidden">
-        {/* Subtle top cyan glow line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <p className="text-xs font-heading tracking-[0.35em] uppercase text-cyan-400/80 mb-3">
+      {/* Hero with mountain image */}
+      <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+        <img
+          src={heroImage}
+          alt="Summit BioLabs FAQ"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 bg-primary/40" />
+        <div className="absolute inset-0 flex items-center justify-center flex-col gap-3">
+          <p className="text-xs font-heading tracking-[0.35em] uppercase text-cyan-300/90">
             Support
           </p>
-          <h1 className="text-3xl md:text-4xl font-heading font-black uppercase tracking-wider text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-wider text-primary-foreground drop-shadow-lg">
             Frequently Asked Questions
           </h1>
-          <p className="font-body text-sm text-white/55 max-w-xl mx-auto">
+          <p className="font-body text-sm text-primary-foreground/70 max-w-xl text-center mt-1">
             Everything you need to know about our products, ordering, and shipping.
           </p>
         </div>
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent" />
       </section>
 
-      {/* ── Accordion ───────────────────────────────────────────────────── */}
+      {/* FAQ Accordion */}
       <section className="py-14 md:py-20">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-white border border-border shadow-[0_2px_24px_rgba(0,30,80,0.06)] divide-y-0">
+          <div className="space-y-4">
             {faqs.map((item, i) => (
               <FAQItem
                 key={i}
@@ -118,18 +128,19 @@ const FAQ = () => {
                 a={item.a}
                 open={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                index={i}
               />
             ))}
           </div>
 
           {/* Still have questions CTA */}
-          <div className="mt-12 text-center">
-            <p className="font-body text-sm text-muted-foreground mb-4">
+          <div className="mt-14 text-center">
+            <p className="font-body text-sm text-muted-foreground mb-5">
               Still have questions? Our team is happy to help.
             </p>
             <Link
               to="/contact"
-              className="inline-block px-8 py-3 bg-primary text-primary-foreground font-heading font-bold text-xs tracking-widest uppercase hover:bg-secondary transition-colors"
+              className="inline-block px-10 py-3.5 bg-primary text-primary-foreground font-heading font-bold text-xs tracking-widest uppercase rounded-lg hover:bg-secondary transition-colors shadow-lg"
             >
               Contact Us
             </Link>
@@ -137,7 +148,7 @@ const FAQ = () => {
         </div>
       </section>
 
-      {/* ── Research disclaimer ─────────────────────────────────────────── */}
+      {/* Research disclaimer */}
       <section className="border-t border-border py-8">
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <p className="text-[10px] font-heading font-bold tracking-[0.22em] uppercase text-muted-foreground/70 mb-2">
