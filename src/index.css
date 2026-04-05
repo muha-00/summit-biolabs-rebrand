@@ -78,6 +78,279 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Summit BioLabs 3D Button — keyframes
+   ───────────────────────────────────────────────────────────── */
+
+@keyframes charAppear {
+  0%   { transform: translateY(55%);  opacity: 0; filter: blur(6px); }
+  25%  { transform: translateY(65%);  opacity: 1; }
+  60%  { transform: translateY(-10%); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0);    opacity: 1; filter: blur(0); }
+}
+
+@keyframes charDisappear {
+  0%   { transform: translateY(0);    opacity: 1; filter: blur(0); }
+  100% { transform: translateY(-65%); opacity: 0; filter: blur(3px); }
+}
+
+@keyframes sBtnPath {
+  from { stroke-dashoffset: 480; stroke: rgba(255,255,255,0.88); }
+  to   { stroke-dashoffset: -480; stroke: #67e8f9; }
+}
+
+/* ── Hero word drop-in animation (FuturisticHero) ──────────────────────────
+   Class toggled on each word once visibleWords passes its index.
+   The sharp cubic-bezier overshoot + slight skew gives the "impact" feel.
+   Random animationDelay per word (set in JS) creates the shudder.
+─────────────────────────────────────────────────────────────────────────── */
+/* ── Hero dramatic shudder (FuturisticHero title words) ────────────────────
+   Phase 1 (0–30%): word materialises out of blur, no vertical travel.
+   Phase 2 (30–100%): rapid left-right micro-shake snaps it into place.
+   Total duration: 0.55s — short enough to feel violent, not elegant.
+─────────────────────────────────────────────────────────────────────────── */
+@keyframes dramaticShudder {
+  0%   { opacity: 0; filter: blur(9px);  transform: scale(0.96) translate(0px, 0px); }
+  18%  { opacity: 1; filter: blur(3px);  transform: scale(1.03) translate(-4px, 0px); }
+  30%  { opacity: 1; filter: blur(0px);  transform: scale(1.01) translate( 5px, 0px); }
+  42%  {             filter: blur(0px);  transform: scale(0.99) translate(-4px, 0px); }
+  54%  {             filter: blur(0px);  transform: scale(1.01) translate( 3px, 0px); }
+  66%  {             filter: blur(0px);  transform: scale(1.00) translate(-2px, 0px); }
+  78%  {             filter: blur(0px);  transform: scale(1.00) translate( 1px, 0px); }
+  100% { opacity: 1; filter: blur(0px);  transform: scale(1)    translate( 0px, 0px); }
+}
+
+@keyframes heroSubIn {
+  0%   { opacity: 0; filter: blur(4px); transform: translateY(0); }
+  100% { opacity: 1; filter: blur(0);   transform: translateY(0); }
+}
+
+.hero-word-in {
+  animation: dramaticShudder 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hero-sub-in {
+  animation: heroSubIn 0.7s ease both;
+}
+
+@keyframes sSplash {
+  to { stroke-dasharray: 2 60; stroke-dashoffset: -60; }
+}
+
+@keyframes sSwingArrow {
+  0%   { transform: translateX(0)   scale(1);   }
+  35%  { transform: translateX(5px) scale(0.88); }
+  100% { transform: translateX(0)   scale(1);   }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Summit BioLabs 3D Button — component styles
+   ───────────────────────────────────────────────────────────── */
+
+.summit-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Gradient pill background with 3-D ledge */
+.s-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: linear-gradient(180deg, #22d3ee 0%, #06b6d4 38%, #0284c7 78%, #0369a1 100%);
+  box-shadow:
+    0 4px 0 0 #0c4a6e,
+    0 7px 22px rgba(6, 182, 212, 0.50),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.summit-btn:hover .s-bg {
+  box-shadow:
+    0 2px 0 0 #0c4a6e,
+    0 12px 34px rgba(6, 182, 212, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.summit-btn:active .s-bg {
+  transform: translateY(3px);
+  box-shadow:
+    0 0px 0 0 #0c4a6e,
+    0 4px 14px rgba(6, 182, 212, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Splash SVG — centred, animates on hover */
+.s-splash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  stroke: #67e8f9;
+  stroke-dasharray: 0 60;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  z-index: 0;
+}
+
+.summit-btn:hover .s-splash {
+  opacity: 1;
+  animation: sSplash 0.65s ease forwards;
+}
+
+/* Inner wrap — matches path SVG dimensions */
+.s-wrap {
+  position: relative;
+  z-index: 1;
+  width: 221px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Path SVG — draws around pill on hover */
+.s-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.88);
+  stroke-dasharray: 480;
+  stroke-dashoffset: 480;
+}
+
+.summit-btn:hover .s-path {
+  animation: sBtnPath 0.75s ease forwards;
+}
+
+/* Subtle inner border ring */
+.s-outline {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+/* Text + icon row */
+.s-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 22px;
+  overflow: hidden;
+}
+
+/* Both char sets share base typography */
+.s-char {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  line-height: 1;
+}
+
+.s-char span {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/* State 1 — default (sits in flow, sets content width) */
+.s-char-1 span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* State 2 — hidden below, absolutely overlaps state-1 */
+.s-char-2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.s-char-2 span {
+  transform: translateY(55%);
+  opacity: 0;
+}
+
+/* Hover: state-1 chars fly up and out */
+.summit-btn:hover .s-char-1 span {
+  animation: charDisappear 0.24s ease forwards;
+  animation-delay: calc(var(--i, 1) * 0.024s);
+}
+
+/* Hover: state-2 chars rise in from below */
+.summit-btn:hover .s-char-2 span {
+  animation: charAppear 0.42s ease forwards;
+  animation-delay: calc(var(--i, 1) * 0.024s + 0.05s);
+}
+
+/* Arrow icon */
+.s-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-left: 7px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.s-icon > span {
+  display: block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+
+/* Horizontal shaft */
+.s-icon > span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 11px;
+  height: 2px;
+  background: #ffffff;
+  transform: translateY(-50%);
+  border-radius: 1px;
+}
+
+/* Arrowhead */
+.s-icon > span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  transform: translateY(-60%) rotate(45deg);
+  border-radius: 0 2px 0 0;
+}
+
+.summit-btn:hover .s-icon > span {
+  animation: sSwingArrow 0.45s ease;
+}
+
 @layer utilities {
   .text-gradient-cyan {
     background: linear-gradient(135deg, hsl(193 100% 42%), hsl(200 100% 32%));

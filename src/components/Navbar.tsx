@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
 import SearchDropdown from "@/components/SearchDropdown";
@@ -10,6 +10,7 @@ const navLinks = [
   { name: "HOME", path: "/" },
   { name: "SHOP", path: "/shop" },
   { name: "LAB RESULTS", path: "/lab-results" },
+  { name: "FAQ", path: "/faq" },
   { name: "CONTACT", path: "/contact" },
 ];
 

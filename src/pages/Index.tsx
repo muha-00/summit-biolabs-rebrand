@@ -1,54 +1,41 @@
-import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import heroImage from "@/assets/hero-mountain.jpg";
+import { FuturisticHero } from "@/components/three/FuturisticHero";
+import { Button3D } from "@/components/ui/Button3D";
 
 const Index = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative h-[70vh] md:h-[85vh] overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Summit BioLabs - Mountain peak with DNA helix"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-primary/40" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-          <p className="text-primary-foreground/80 text-xs md:text-sm font-heading tracking-[0.4em] uppercase mb-4">
-            Summit BioLabs
-          </p>
-          <h1 className="text-primary-foreground text-4xl md:text-6xl lg:text-7xl font-heading font-black uppercase tracking-wider leading-tight mb-8">
-            At the Summit<br />of Science
-          </h1>
-          <Link
-            to="/shop"
-            className="bg-primary-foreground text-primary px-10 py-3 font-heading font-bold text-sm tracking-widest uppercase hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-          >
-            SHOP NOW
-          </Link>
-        </div>
+      {/* ── Futuristic Hero ──────────────────────────────────────────────── */}
+      <FuturisticHero />
 
-        {/* Frost particles */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
-      </section>
-
-      {/* Featured section */}
+      {/* ── Featured section ─────────────────────────────────────────────── */}
       <section className="bg-frost py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary tracking-wider uppercase mb-4">
             Premium Research Compounds
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8 font-body">
-            Industry-leading purity backed by third-party lab verification. Every batch tested. Every result published.
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-10 font-body">
+            Industry-leading purity backed by third-party lab verification.
+            Every batch tested. Every result published.
           </p>
-          <Link
-            to="/shop"
-            className="inline-block bg-gradient-cyan text-secondary-foreground px-8 py-3 font-heading font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity"
-          >
-            BROWSE PRODUCTS
-          </Link>
+          <Button3D label="Browse Products" to="/shop" />
+        </div>
+      </section>
+
+      {/* ── Research Disclaimer ──────────────────────────────────────────── */}
+      <section className="bg-background border-t border-border py-10 md:py-14">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <p className="text-[10px] font-heading font-bold tracking-[0.22em] uppercase text-muted-foreground/70 mb-3">
+            Research Disclaimer
+          </p>
+          <p className="text-xs font-heading font-semibold tracking-widest uppercase text-muted-foreground/80 mb-3">
+            Research Use Only. Not for Human Consumption.
+          </p>
+          <p className="text-xs font-body text-muted-foreground/60 leading-relaxed">
+            All products sold by Summit BioLabs are intended strictly for laboratory research purposes only.
+            These products are not intended for human consumption, medical use, or diagnostic purposes.
+            By purchasing from this website you agree that the products will be used for laboratory research purposes only.
+          </p>
         </div>
       </section>
     </Layout>

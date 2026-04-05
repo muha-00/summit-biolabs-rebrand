@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero-mountain.jpg";
+import { Button3D } from "@/components/ui/Button3D";
 
 const Contact = () => {
   return (
@@ -26,7 +26,6 @@ const Contact = () => {
       {/* Content */}
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {/* Email Orders */}
           <div>
             <h2 className="text-xl font-heading font-bold text-primary tracking-wider uppercase mb-4">Email Orders</h2>
             <p className="text-sm font-body text-muted-foreground leading-relaxed mb-4">
@@ -44,7 +43,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Support */}
           <div>
             <h2 className="text-xl font-heading font-bold text-primary tracking-wider uppercase mb-4">Support</h2>
             <p className="text-sm font-body text-muted-foreground leading-relaxed mb-4">
@@ -58,14 +56,8 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Shop CTA */}
         <div className="text-center mt-12">
-          <Link
-            to="/shop"
-            className="inline-block bg-gradient-cyan text-secondary-foreground px-10 py-3 font-heading font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity"
-          >
-            SHOP NOW
-          </Link>
+          <Button3D label="Shop Now" to="/shop" />
         </div>
       </div>
     </Layout>

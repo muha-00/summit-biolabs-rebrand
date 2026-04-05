@@ -1,87 +1,117 @@
 export interface Product {
   id: string;
   name: string;
+  spec: string;
   price: number;
   category: string;
   subcategory?: string;
+  description: string;
+  nickname?: string;
 }
 
 export const products: Product[] = [
-  // Test
-  { id: "test-c-1", name: "Test C 250mg/ml", price: 45, category: "Test", subcategory: "Test C" },
-  { id: "test-c-2", name: "Test C 200mg/ml", price: 40, category: "Test", subcategory: "Test C" },
-  { id: "test-e-1", name: "Test E 250mg/ml", price: 42, category: "Test", subcategory: "Test E" },
-  { id: "test-e-2", name: "Test E 300mg/ml", price: 48, category: "Test", subcategory: "Test E" },
-  { id: "test-p-1", name: "Test P 100mg/ml", price: 38, category: "Test", subcategory: "Test P" },
-  { id: "test-u-1", name: "Test U 250mg/ml", price: 55, category: "Test", subcategory: "Test U" },
-  { id: "sust-1", name: "Sustanon 250mg/ml", price: 50, category: "Test", subcategory: "Sust" },
-  { id: "sust-2", name: "Sustanon 400mg/ml", price: 60, category: "Test", subcategory: "Sust" },
-  // HGH
-  { id: "hgh-1", name: "HGH 10IU", price: 85, category: "HGH" },
-  { id: "hgh-2", name: "HGH 36IU Pen", price: 95, category: "HGH" },
-  // Trestolone (MENT)
-  { id: "ment-1", name: "MENT 50mg/ml", price: 65, category: "Trestolone (MENT)" },
-  { id: "ment-2", name: "MENT Ace 100mg/ml", price: 75, category: "Trestolone (MENT)" },
-  // Tren
-  { id: "tren-a-1", name: "Tren A 100mg/ml", price: 55, category: "Tren" },
-  { id: "tren-e-1", name: "Tren E 200mg/ml", price: 60, category: "Tren" },
-  // Mast
-  { id: "mast-e-1", name: "Mast E 200mg/ml", price: 52, category: "Mast" },
-  { id: "mast-p-1", name: "Mast P 100mg/ml", price: 48, category: "Mast" },
-  // DHB
-  { id: "dhb-1", name: "DHB 100mg/ml", price: 70, category: "DHB" },
-  // Deca
-  { id: "deca-1", name: "Deca 250mg/ml", price: 45, category: "Deca" },
-  { id: "deca-2", name: "Deca 300mg/ml", price: 50, category: "Deca" },
-  // Primo
-  { id: "primo-1", name: "Primo E 200mg/ml", price: 85, category: "Primo" },
-  // EQ
-  { id: "eq-1", name: "EQ 300mg/ml", price: 48, category: "EQ" },
-  { id: "eq-2", name: "EQ 500mg/ml", price: 65, category: "EQ" },
-  // NPP
-  { id: "npp-1", name: "NPP 100mg/ml", price: 42, category: "NPP" },
-  // Orals
-  { id: "oral-1", name: "Anavar 25mg", price: 55, category: "Orals" },
-  { id: "oral-2", name: "Dianabol 25mg", price: 35, category: "Orals" },
-  { id: "oral-3", name: "Winstrol 25mg", price: 38, category: "Orals" },
-  { id: "oral-4", name: "Anadrol 50mg", price: 40, category: "Orals" },
-  // Peptides
-  { id: "pep-1", name: "BPC-157 5mg", price: 35, category: "Peptides" },
-  { id: "pep-2", name: "TB-500 5mg", price: 38, category: "Peptides" },
-  { id: "pep-3", name: "Ipamorelin 5mg", price: 30, category: "Peptides" },
-  // Nootropics
-  { id: "noo-1", name: "Noopept 20mg/ml", price: 32, category: "Nootropics" },
-  { id: "noo-2", name: "Phenylpiracetam 100mg", price: 45, category: "Nootropics" },
-  { id: "noo-3", name: "Alpha-GPC 300mg/ml", price: 38, category: "Nootropics" },
-  { id: "noo-4", name: "Semax 0.1%", price: 42, category: "Nootropics" },
-  { id: "noo-5", name: "Selank 0.15%", price: 40, category: "Nootropics" },
-  // HCG
-  { id: "hcg-1", name: "HCG 5000IU", price: 35, category: "HCG" },
-  { id: "hcg-2", name: "HCG 10000IU", price: 55, category: "HCG" },
-  // BAC Water
-  { id: "bac-1", name: "BAC Water 30ml", price: 25, category: "BAC Water" },
-  // L-Carnitine
-  { id: "lcar-1", name: "L-Carnitine 500mg/ml", price: 35, category: "L-Carnitine" },
-  // Vitamin B12
-  { id: "b12-1", name: "Vitamin B12 1000mcg/ml", price: 28, category: "Vitamin B12" },
+  // ── HGH (kept from original catalog) ───────────────────────────────────────
+  { id: "hgh-1", name: "HGH", spec: "10IU * 10 vials", price: 85,  category: "HGH", description: "Human Growth Hormone studied for growth and metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "hgh-2", name: "HGH", spec: "36IU Pen",        price: 95,  category: "HGH", description: "Human Growth Hormone pen studied for growth and metabolic research. FOR RESEARCH USE ONLY" },
+
+  // ── Semaglutide ─────────────────────────────────────────────────────────────
+  { id: "SM2",  name: "Semaglutide", spec: "2mg * 10 vials",  price: 30,  category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+  { id: "SM5",  name: "Semaglutide", spec: "5mg * 10 vials",  price: 36,  category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+  { id: "SM10", name: "Semaglutide", spec: "10mg * 10 vials", price: 48,  category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+  { id: "SM15", name: "Semaglutide", spec: "15mg * 10 vials", price: 62,  category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+  { id: "SM20", name: "Semaglutide", spec: "20mg * 10 vials", price: 76,  category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+  { id: "SM30", name: "Semaglutide", spec: "30mg * 10 vials", price: 102, category: "Semaglutide", description: "GLP-1 receptor agonist studied for metabolic research and appetite regulation. FOR RESEARCH USE ONLY" },
+
+  // ── Tirzepatide ─────────────────────────────────────────────────────────────
+  { id: "TR5",  name: "Tirzepatide", spec: "5mg * 10 vials",  price: 36,  category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR10", name: "Tirzepatide", spec: "10mg * 10 vials", price: 48,  category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR15", name: "Tirzepatide", spec: "15mg * 10 vials", price: 62,  category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR20", name: "Tirzepatide", spec: "20mg * 10 vials", price: 76,  category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR30", name: "Tirzepatide", spec: "30mg * 10 vials", price: 102, category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR40", name: "Tirzepatide", spec: "40mg * 10 vials", price: 130, category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR45", name: "Tirzepatide", spec: "45mg * 10 vials", price: 146, category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR50", name: "Tirzepatide", spec: "50mg * 10 vials", price: 155, category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "TR60", name: "Tirzepatide", spec: "60mg * 10 vials", price: 180, category: "Tirzepatide", description: "Dual GLP-1/GIP agonist studied for advanced metabolic research. FOR RESEARCH USE ONLY" },
+
+  // ── Retatrutide ─────────────────────────────────────────────────────────────
+  { id: "RT5",  name: "Retatrutide", spec: "5mg * 10 vials",  price: 56,  category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT10", name: "Retatrutide", spec: "10mg * 10 vials", price: 90,  category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT15", name: "Retatrutide", spec: "15mg * 10 vials", price: 125, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT20", name: "Retatrutide", spec: "20mg * 10 vials", price: 150, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT24", name: "Retatrutide", spec: "24mg * 10 vials", price: 170, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT30", name: "Retatrutide", spec: "30mg * 10 vials", price: 210, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT36", name: "Retatrutide", spec: "36mg * 10 vials", price: 235, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT40", name: "Retatrutide", spec: "40mg * 10 vials", price: 280, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT50", name: "Retatrutide", spec: "50mg * 10 vials", price: 350, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "RT60", name: "Retatrutide", spec: "60mg * 10 vials", price: 390, category: "Retatrutide", description: "Triple agonist (GLP-1/GIP/Glucagon) studied for next-generation metabolic research. FOR RESEARCH USE ONLY" },
+
+  // ── Cagrilintide ────────────────────────────────────────────────────────────
+  { id: "CGL5",  name: "Cagrilintide", spec: "5mg * 10 vials",  price: 125, category: "Cagrilintide", description: "Amylin receptor agonist studied for appetite and metabolic research. FOR RESEARCH USE ONLY" },
+  { id: "CGL10", name: "Cagrilintide", spec: "10mg * 10 vials", price: 198, category: "Cagrilintide", description: "Amylin receptor agonist studied for appetite and metabolic research. FOR RESEARCH USE ONLY" },
+
+  // ── Healing Peptides ────────────────────────────────────────────────────────
+  { id: "BC5",  name: "BPC-157", spec: "5mg * 10 vials",  price: 42,  category: "Healing Peptides", description: "Body Protection Compound studied for gut health and tissue repair research. FOR RESEARCH USE ONLY" },
+  { id: "BC10", name: "BPC-157", spec: "10mg * 10 vials", price: 75,  category: "Healing Peptides", description: "Body Protection Compound studied for gut health and tissue repair research. FOR RESEARCH USE ONLY" },
+  { id: "TB5",  name: "TB-500",  spec: "5mg * 10 vials",  price: 84,  category: "Healing Peptides", description: "Thymosin Beta-4 fragment studied for tissue repair and recovery research. FOR RESEARCH USE ONLY" },
+  { id: "TB10", name: "TB-500",  spec: "10mg * 10 vials", price: 158, category: "Healing Peptides", description: "Thymosin Beta-4 fragment studied for tissue repair and recovery research. FOR RESEARCH USE ONLY" },
+  { id: "KPV5",  name: "Lysine-Proline-Valine (KPV)", spec: "5mg * 10 vials",  price: 41, category: "Healing Peptides", description: "Anti-inflammatory tripeptide studied for gut and skin healing research. FOR RESEARCH USE ONLY" },
+  { id: "KPV10", name: "Lysine-Proline-Valine (KPV)", spec: "10mg * 10 vials", price: 55, category: "Healing Peptides", description: "Anti-inflammatory tripeptide studied for gut and skin healing research. FOR RESEARCH USE ONLY" },
+
+  // ── Skin & Anti-Aging ───────────────────────────────────────────────────────
+  { id: "CU50",  name: "GHK-CU", spec: "50mg * 10 vials",  price: 35, category: "Skin & Anti-Aging", description: "Copper peptide studied for skin regeneration, wound healing and anti-aging research. FOR RESEARCH USE ONLY" },
+  { id: "CU100", name: "GHK-CU", spec: "100mg * 10 vials", price: 50, category: "Skin & Anti-Aging", description: "Copper peptide studied for skin regeneration, wound healing and anti-aging research. FOR RESEARCH USE ONLY" },
+  { id: "NP810", name: "Snap-8",  spec: "10mg * 10 vials",  price: 41, category: "Skin & Anti-Aging", description: "Acetyl Octapeptide-3 studied for anti-wrinkle and skin smoothing research. FOR RESEARCH USE ONLY" },
+
+  // ── Antioxidants ────────────────────────────────────────────────────────────
+  { id: "GTT600",  name: "Glutathione", spec: "600mg * 10 vials",  price: 35, category: "Antioxidants", description: "Powerful antioxidant studied for detoxification and cellular protection research. FOR RESEARCH USE ONLY" },
+  { id: "GTT1200", name: "Glutathione", spec: "1200mg * 10 vials", price: 56, category: "Antioxidants", description: "Powerful antioxidant studied for detoxification and cellular protection research. FOR RESEARCH USE ONLY" },
+  { id: "GTT1500", name: "Glutathione", spec: "1500mg * 10 vials", price: 70, category: "Antioxidants", description: "Powerful antioxidant studied for detoxification and cellular protection research. FOR RESEARCH USE ONLY" },
+
+  // ── Cognitive ───────────────────────────────────────────────────────────────
+  { id: "XA5",  name: "Semax", spec: "5mg * 10 vials",  price: 42, category: "Cognitive", description: "Heptapeptide studied for cognitive enhancement and neuroprotection research. FOR RESEARCH USE ONLY" },
+  { id: "XA11", name: "Semax", spec: "11mg * 10 vials", price: 53, category: "Cognitive", description: "Heptapeptide studied for cognitive enhancement and neuroprotection research. FOR RESEARCH USE ONLY" },
+  { id: "SK5",  name: "Selank", spec: "5mg * 10 vials",  price: 41, category: "Cognitive", description: "Anxiolytic peptide studied for stress reduction and cognitive research. FOR RESEARCH USE ONLY" },
+  { id: "SK11", name: "Selank", spec: "11mg * 10 vials", price: 63, category: "Cognitive", description: "Anxiolytic peptide studied for stress reduction and cognitive research. FOR RESEARCH USE ONLY" },
+
+  // ── Growth Factors ──────────────────────────────────────────────────────────
+  { id: "IG01", name: "IGF-1 LR3", spec: "0.1mg * 10 vials", price: 36,  category: "Growth Factors", description: "Long-acting insulin-like growth factor studied for muscle and tissue growth research. FOR RESEARCH USE ONLY" },
+  { id: "IG1",  name: "IGF-1 LR3", spec: "1mg * 10 vials",   price: 208, category: "Growth Factors", description: "Long-acting insulin-like growth factor studied for muscle and tissue growth research. FOR RESEARCH USE ONLY" },
+  { id: "TSM5",  name: "Tesamorelin", spec: "5mg * 10 vials",  price: 110, category: "Growth Factors", description: "Growth hormone releasing hormone analog studied for fat reduction and GH research. FOR RESEARCH USE ONLY" },
+  { id: "TSM10", name: "Tesamorelin", spec: "10mg * 10 vials", price: 208, category: "Growth Factors", description: "Growth hormone releasing hormone analog studied for fat reduction and GH research. FOR RESEARCH USE ONLY" },
+  { id: "TSM15", name: "Tesamorelin", spec: "15mg * 10 vials", price: 290, category: "Growth Factors", description: "Growth hormone releasing hormone analog studied for fat reduction and GH research. FOR RESEARCH USE ONLY" },
+
+  // ── Longevity ───────────────────────────────────────────────────────────────
+  { id: "MS10", name: "MOTS-c", spec: "10mg * 10 vials", price: 66,  category: "Longevity", description: "Mitochondrial-derived peptide studied for metabolic and longevity research. FOR RESEARCH USE ONLY" },
+  { id: "MS40", name: "MOTS-c", spec: "40mg * 10 vials", price: 208, category: "Longevity", description: "Mitochondrial-derived peptide studied for metabolic and longevity research. FOR RESEARCH USE ONLY" },
+  { id: "VIP5",  name: "VIP", spec: "5mg * 10 vials",  price: 83,  category: "Longevity", description: "Vasoactive intestinal peptide studied for anti-inflammatory and neuroprotective research. FOR RESEARCH USE ONLY" },
+  { id: "VIP10", name: "VIP", spec: "10mg * 10 vials", price: 152, category: "Longevity", description: "Vasoactive intestinal peptide studied for anti-inflammatory and neuroprotective research. FOR RESEARCH USE ONLY" },
+
+  // ── Blends ──────────────────────────────────────────────────────────────────
+  { id: "BB10",  name: "BPC-157 + TB-500", spec: "5mg + 5mg * 10 vials",   price: 105, category: "Blends", nickname: "(Wolverine)", description: "Classic healing stack studied for tissue repair research. FOR RESEARCH USE ONLY" },
+  { id: "BB20",  name: "BPC-157 + TB-500", spec: "10mg + 10mg * 10 vials", price: 195, category: "Blends", nickname: "(Wolverine)", description: "Classic healing stack studied for tissue repair research. FOR RESEARCH USE ONLY" },
+  { id: "BBG50", name: "GLOW50", spec: "BPC-157 5mg + GHK-Cu 35mg + TB-500 10mg",                     price: 155, category: "Blends", nickname: "(Wolverine Glow)", description: "Advanced healing blend studied for tissue repair and recovery research. FOR RESEARCH USE ONLY" },
+  { id: "BBG70", name: "GLOW70", spec: "BPC-157 10mg + GHK-Cu 50mg + TB-500 10mg",                    price: 208, category: "Blends", nickname: "(Wolverine Glow)", description: "Advanced healing blend studied for tissue repair and recovery research. FOR RESEARCH USE ONLY" },
+  { id: "KLOW",  name: "KLOW",   spec: "GHK-Cu 50mg + TB-500 10mg + BPC-157 10mg + KPV 10mg",         price: 250, category: "Blends", description: "Multi-peptide healing blend studied for advanced recovery research. FOR RESEARCH USE ONLY" },
+
+  // ── Supplies ─────────────────────────────────────────────────────────────────
+  { id: "BA3",  name: "BAC Water",    spec: "3ml * 10 vials",  price: 8,  category: "Supplies", description: "Bacteriostatic water for peptide reconstitution. FOR RESEARCH USE ONLY" },
+  { id: "BA10", name: "BAC Water",    spec: "10ml * 10 vials", price: 11, category: "Supplies", description: "Bacteriostatic water for peptide reconstitution. FOR RESEARCH USE ONLY" },
+  { id: "WA3",  name: "Sterile Water", spec: "3ml * 10 vials",  price: 8,  category: "Supplies", description: "Sterile water for research use. FOR RESEARCH USE ONLY" },
+  { id: "WA10", name: "Sterile Water", spec: "10ml * 10 vials", price: 11, category: "Supplies", description: "Sterile water for research use. FOR RESEARCH USE ONLY" },
 ];
 
 export const categories = [
-  { name: "Test", subcategories: ["Test C", "Test E", "Test P", "Test U", "Sust"] },
   { name: "HGH" },
-  { name: "Trestolone (MENT)" },
-  { name: "Tren" },
-  { name: "Mast" },
-  { name: "DHB" },
-  { name: "Deca" },
-  { name: "Primo" },
-  { name: "EQ" },
-  { name: "NPP" },
-  { name: "Orals" },
-  { name: "Peptides" },
-  { name: "Nootropics" },
-  { name: "HCG" },
-  { name: "BAC Water" },
-  { name: "L-Carnitine" },
-  { name: "Vitamin B12" },
+  { name: "Semaglutide" },
+  { name: "Tirzepatide" },
+  { name: "Retatrutide" },
+  { name: "Cagrilintide" },
+  { name: "Healing Peptides" },
+  { name: "Blends" },
+  { name: "Skin & Anti-Aging" },
+  { name: "Antioxidants" },
+  { name: "Cognitive" },
+  { name: "Growth Factors" },
+  { name: "Longevity" },
+  { name: "Supplies" },
 ];
