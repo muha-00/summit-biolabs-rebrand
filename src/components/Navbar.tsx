@@ -23,12 +23,26 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-background border-b border-border sticky top-0 z-40">
-        <div className="container mx-auto px-4 flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="Summit BioLabs" className="h-12 lg:h-16 w-auto" />
+      <nav className="bg-background border-b border-border sticky top-0 z-40 overflow-visible">
+        {/* Main bar */}
+        <div className="flex items-center justify-between h-20 lg:h-24 w-full">
+
+          {/* Logo — hard left, oversized to bleed above/below bar */}
+          <Link to="/" className="flex-shrink-0 flex items-center pl-16">
+            <img
+              src={logo}
+              alt="Summit BioLabs"
+              className="w-auto"
+              style={{
+                height: "clamp(88px, 13vw, 140px)",
+                marginTop: "-10px",
+                marginBottom: "-18px",
+                filter: "drop-shadow(0 2px 16px rgba(0,100,200,0.22))",
+              }}
+            />
           </Link>
 
+          {/* Nav links — desktop */}
           <div className="hidden md:flex items-center gap-1">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
@@ -52,7 +66,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Right side — cart + promo + mobile toggle */}
+          <div className="flex items-center gap-4 pr-4">
             <span className="hidden lg:inline text-xs font-heading font-semibold text-primary tracking-wide">
               20% OFF ORDERS ABOVE $500
             </span>
@@ -78,7 +93,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Search bar dropdown */}
+        {/* Search dropdown */}
         {searchOpen && (
           <div className="border-t border-border bg-background px-4 py-3">
             <div className="container mx-auto max-w-lg">
@@ -87,6 +102,7 @@ const Navbar = () => {
           </div>
         )}
 
+        {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden border-t border-border bg-background">
             <div className="px-4 py-3">
@@ -107,6 +123,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
+
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );

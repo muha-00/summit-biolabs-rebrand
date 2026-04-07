@@ -80,19 +80,8 @@ const FAQ = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb */}
-      <div className="bg-frost border-b border-border">
-        <div className="container mx-auto px-4 py-3">
-          <p className="text-xs font-heading tracking-wider text-muted-foreground">
-            <Link to="/" className="hover:text-primary transition-colors">HOME</Link>
-            <span className="mx-2">/</span>
-            <span className="text-primary font-semibold">FAQ</span>
-          </p>
-        </div>
-      </div>
-
       {/* Hero with mountain image */}
-      <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+      <section className="relative h-[45vh] md:h-[52vh] overflow-hidden">
         <img
           src={heroImage}
           alt="Summit BioLabs FAQ"
@@ -101,18 +90,31 @@ const FAQ = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-primary/40" />
-        <div className="absolute inset-0 flex items-center justify-center flex-col gap-3">
-          <p className="text-xs font-heading tracking-[0.35em] uppercase text-secondary">
+        {/* Cinematic dark overlay — identical to Contact page */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(3,7,24,0.60) 0%, rgba(3,7,24,0.45) 50%, rgba(3,7,24,0.80) 100%)" }}
+        />
+        {/* Cyan glow line at top */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ zIndex: 10 }}>
+          <p className="text-xs font-heading tracking-[0.38em] uppercase mb-3" style={{ color: "rgba(0,229,255,0.85)" }}>
             Support
           </p>
-          <h1 className="text-3xl md:text-5xl font-heading font-black uppercase tracking-wider text-primary-foreground drop-shadow-lg">
+          <h1
+            className="text-4xl md:text-5xl font-heading font-black uppercase tracking-wider text-white mb-4 drop-shadow-lg"
+            style={{ textShadow: "0 2px 32px rgba(0,100,200,0.45)" }}
+          >
             Frequently Asked Questions
           </h1>
-          <p className="font-body text-sm text-primary-foreground/70 max-w-xl text-center mt-1">
+          <p className="font-body text-sm md:text-base max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.60)" }}>
             Everything you need to know about our products, ordering, and shipping.
           </p>
         </div>
+
+        {/* Bottom fog fade — identical to Contact page */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" style={{ zIndex: 5 }} />
       </section>
 
       {/* FAQ Accordion */}
