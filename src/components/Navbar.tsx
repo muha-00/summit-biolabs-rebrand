@@ -9,7 +9,6 @@ import SearchDropdown from "@/components/SearchDropdown";
 const navLinks = [
   { name: "HOME", path: "/" },
   { name: "SHOP", path: "/shop" },
-  { name: "LAB RESULTS", path: "/lab-results" },
   { name: "FAQ", path: "/faq" },
   { name: "CONTACT", path: "/contact" },
 ];
