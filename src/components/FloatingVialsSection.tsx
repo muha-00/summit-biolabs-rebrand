@@ -39,10 +39,10 @@ export default function FloatingVialsSection() {
   return (
     <section className="bg-white overflow-hidden">
       <div className="container mx-auto px-6 py-16 md:py-24 lg:py-28">
-        <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12" style={{ minHeight: "640px" }}>
 
           {/* ── Left: copy ─────────────────────────────────────────────── */}
-          <div className="flex-1 max-w-xl text-center lg:text-left">
+          <div className="text-center lg:text-left" style={{ flex: "0 0 32%", maxWidth: "32%" }}>
 
             {/* Trusted badge */}
             <div className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 mb-7"
@@ -148,14 +148,14 @@ export default function FloatingVialsSection() {
           </div>
 
           {/* ── Right: floating vials ───────────────────────────────────── */}
-          <div className="flex-1 w-full">
+          <div style={{ flex: "0 0 68%", width: "68%" }}>
             <div className="flex items-end justify-center gap-4 md:gap-8">
               {VIALS.map((v, i) => (
                 <Link
                   key={v.name}
                   to={v.to}
                   className={`flex flex-col items-center group select-none flex-1 ${v.tilt}`}
-                  style={{ textDecoration: "none", maxWidth: i === 1 ? "38%" : "31%" }}
+                  style={{ textDecoration: "none", maxWidth: i === 1 ? "40%" : "30%" }}
                 >
                   {/* Vial image — float + glow */}
                   <div

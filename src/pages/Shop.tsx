@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
@@ -11,9 +11,9 @@ const Shop = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-const [sortBy, setSortBy] = useState("default");
+  const [sortBy, setSortBy] = useState("default");
 
-const filteredProducts = useMemo(() => {
+  const filteredProducts = useMemo(() => {
     let result = groupedProducts;
 
     if (searchQuery) {
@@ -36,12 +36,13 @@ const filteredProducts = useMemo(() => {
       <FloatingVialsSection />
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-8">
+
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <SearchDropdown className="mb-6" />
 
             <button
-              onClick={() => { setActiveCategory(null); setActiveSubcategory(null); }}
+              onClick={() => setActiveCategory(null)}
               className={`w-full flex items-center justify-between px-4 py-3 font-heading text-xs font-bold tracking-widest uppercase mb-4 transition-colors ${
                 !activeCategory ? "bg-primary text-primary-foreground" : "bg-accent text-primary hover:bg-primary hover:text-primary-foreground"
               }`}
@@ -52,20 +53,17 @@ const filteredProducts = useMemo(() => {
 
             <div className="space-y-0.5">
               {categories.map((cat) => (
-                <div key={cat.name}>
-                  <button
-                    className={`w-full text-left px-4 py-2 text-sm font-body flex items-center justify-between transition-colors ${
-                      activeCategory === cat.name
-                        ? "text-secondary font-semibold bg-accent"
-                        : "text-muted-foreground hover:text-primary hover:bg-accent"
-                    }`}
-                    onClick={() => {
-                      setActiveCategory(cat.name);
-                    }}
-                  >
-                    {cat.name}
-                  </button>
-                </div>
+                <button
+                  key={cat.name}
+                  className={`w-full text-left px-4 py-2 text-sm font-body flex items-center justify-between transition-colors ${
+                    activeCategory === cat.name
+                      ? "text-secondary font-semibold bg-accent"
+                      : "text-muted-foreground hover:text-primary hover:bg-accent"
+                  }`}
+                  onClick={() => setActiveCategory(cat.name)}
+                >
+                  {cat.name}
+                </button>
               ))}
             </div>
           </aside>

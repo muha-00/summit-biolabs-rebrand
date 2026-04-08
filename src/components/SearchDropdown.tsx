@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { products } from "@/data/products";
 
-const SearchDropdown = ({ className, onClose }: { className?: string; onClose?: () => void }) => {
+const SearchDropdown = ({ className, onClose, onSearch }: { className?: string; onClose?: () => void; onSearch?: () => void }) => {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const SearchDropdown = ({ className, onClose }: { className?: string; onClose?: 
       navigate(`/shop?search=${encodeURIComponent(query.trim())}`);
       setFocused(false);
       onClose?.();
+      setTimeout(() => onSearch?.(), 50);
     }
   };
 
@@ -27,6 +28,7 @@ const SearchDropdown = ({ className, onClose }: { className?: string; onClose?: 
     navigate(`/shop?search=${encodeURIComponent(name)}`);
     setFocused(false);
     onClose?.();
+    setTimeout(() => onSearch?.(), 50);
   };
 
   useEffect(() => {
