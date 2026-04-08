@@ -46,7 +46,7 @@ const ProductCard = ({ group }: { group: GroupedProduct }) => {
   };
 
   return (
-    <div style={{ perspective: "900px" }}>
+    <div style={{ perspective: "900px" }} className="h-full">
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -60,12 +60,12 @@ const ProductCard = ({ group }: { group: GroupedProduct }) => {
             (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 18px rgba(0,0,0,0.07)";
           }
         }}
-        className="bg-white group relative flex flex-col transition-all duration-300 ease-out"
+        className="bg-white group relative flex flex-col h-full transition-all duration-300 ease-out"
         style={{ transformStyle: "preserve-3d", boxShadow: "0 4px 18px rgba(0,0,0,0.07)" }}
       >
         <Link
           to={`/product/${firstVariant.id}`}
-          className="w-full flex flex-col items-center p-5 pb-3"
+          className="w-full flex flex-col items-center p-4 pb-3 flex-1"
           style={{ transformStyle: "preserve-3d" }}
         >
           {/* Vial */}
