@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -12,6 +12,8 @@ const Shop = () => {
   const searchQuery = searchParams.get("search") || "";
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState("default");
+  const gridRef = useRef<HTMLDivElement>(null);
+  const scrollToGrid = () => gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const filteredProducts = useMemo(() => {
     let result = groupedProducts;
@@ -33,7 +35,7 @@ const Shop = () => {
 
   return (
     <Layout>
-      <FloatingVialsSection />
+      <FloatingVialsSection onBrowse={scrollToGrid} />
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-8">
 
@@ -69,7 +71,7 @@ const Shop = () => {
           </aside>
 
           {/* Main */}
-          <div className="flex-1">
+          <div className="flex-1" ref={gridRef}>
             <div className="flex items-center justify-between mb-8">
               <p className="text-sm text-muted-foreground font-body">
                 Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""}

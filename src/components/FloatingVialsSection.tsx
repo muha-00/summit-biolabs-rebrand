@@ -35,7 +35,7 @@ const VIALS = [
   },
 ];
 
-export default function FloatingVialsSection() {
+export default function FloatingVialsSection({ onBrowse }: { onBrowse?: () => void }) {
   return (
     <section className="bg-white overflow-hidden">
       <div className="container mx-auto px-6 py-16 md:py-24 lg:py-28">
@@ -83,27 +83,51 @@ export default function FloatingVialsSection() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
-              <Link
-                to="/shop"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  background: "linear-gradient(135deg, #00C8E8 0%, #0090C8 100%)",
-                  color: "#001828",
-                  boxShadow: "0 4px 20px rgba(0,200,232,0.35)",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.filter = "brightness(1.08)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(0,200,232,0.55)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.filter = "";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,200,232,0.35)";
-                }}
-              >
-                Browse Catalog
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              {onBrowse ? (
+                <button
+                  onClick={onBrowse}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    background: "linear-gradient(135deg, #00C8E8 0%, #0090C8 100%)",
+                    color: "#001828",
+                    boxShadow: "0 4px 20px rgba(0,200,232,0.35)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.filter = "brightness(1.08)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(0,200,232,0.55)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.filter = "";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,200,232,0.35)";
+                  }}
+                >
+                  Browse Catalog
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : (
+                <Link
+                  to="/shop"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    background: "linear-gradient(135deg, #00C8E8 0%, #0090C8 100%)",
+                    color: "#001828",
+                    boxShadow: "0 4px 20px rgba(0,200,232,0.35)",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.filter = "brightness(1.08)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(0,200,232,0.55)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.filter = "";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,200,232,0.35)";
+                  }}
+                >
+                  Browse Catalog
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
               <Link
                 to="/faq"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold tracking-wide border transition-all duration-200"
